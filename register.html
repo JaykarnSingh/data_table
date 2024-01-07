@@ -1,0 +1,75 @@
+<!-- register.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Page</title>
+  <link rel="stylesheet" href="register.css">
+  <script>
+    function showAdditionalFields() {
+      var signupForm = document.querySelector('.signup-form');
+      var additionalFields = document.querySelector('.additional-fields');
+
+      signupForm.style.display = 'none';
+      additionalFields.style.display = 'flex';
+
+      // Change the heading to "Create New Account"
+      document.querySelector('.login-container h2').innerText = 'Create New Account';
+    }
+  </script>
+</head>
+<body>
+  <div class="login-container" id="register-container">
+    <h2>Register User</h2>
+    <form class="signup-form" action="#" method="post">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password:</label>
+        <input type="password" id="signup-password" name="signup-password" required>
+      </div>
+      <button type="button" onclick="showAdditionalFields()">Sign Up</button>
+    </form>
+
+    <form class="additional-fields" style="display: none;">
+      
+        <div class="form-group">
+          <label for="client-id">Zerodha Client ID:</label>
+          <input type="text" id="client-id" name="client-id" required>
+        </div>
+        <div class="form-group">
+          <label for="zerodha-password">Zerodha Password:</label>
+          <input type="password" id="zerodha-password" name="zerodha-password" required>
+        </div>
+      
+      
+        <div class="form-group">
+          <label for="api-key">API Key:</label>
+          <input type="text" id="api-key" name="api-key" required>
+        </div>
+        <div class="form-group">
+          <label for="api-secret">API Secret:</label>
+          <input type="text" id="api-secret" name="api-secret" required>
+        </div>
+      
+      <div class="form-group">
+        <label for="otp">OTP:</label>
+        <input type="text" id="otp" name="otp" required>
+      </div>
+      <button type="submit">Signup</button>
+    </form>
+
+    <div class="create-account">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+</body>
+</html>

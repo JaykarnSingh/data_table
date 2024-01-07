@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="home.css">
+  <script>
+    function showSection(section) {
+      // Hide all sections
+      document.getElementById('signals-section').style.display = 'none';
+      document.getElementById('trade-book-section').style.display = 'none';
+
+      // Remove highlight from all clickable links
+      var clickableLinks = document.querySelectorAll('.nav-item');
+      clickableLinks.forEach(link => link.classList.remove('highlight'));
+
+      // Show the selected section
+      document.getElementById(section + '-section').style.display = 'block';
+
+      // Highlight the selected clickable link
+      document.getElementById(section + '-link').classList.add('highlight');
+
+      // If the "Trade Book" section is clicked, load trade book data
+      if (section === 'tradeBook') {
+        loadTradeBookData();
+      }
+    }
+
+    function loadTradeBookData() {
+      // You can customize this function to load your trade book data
+      // For example, update the content of the "Trade Book" section
+      var tradeBookSection = document.getElementById('trade-book-section');
+      tradeBookSection.innerHTML = '<h2>Trade Book</h2><p>Custom content for Trade Book section.</p>';
+
+      // You can also initialize DataTable for the new content if needed
+      // Example:
+      // $('#tradeBookTable').DataTable({
+      //   // DataTable configurations for Trade Book
+      // });
+    }
+  </script>
+
+  <link
+  rel="stylesheet"
+  type="text/css"
+  href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css"
+  />
+
+
+
+</head>
+<body>
+  <div class="home-container">
+    <!-- Welcome Message and Login Link -->
+    <h1>Welcome to the Home Page</h1>
+    <p>For access, please <a href="login.html">Login</a>.</p>
+
+    <!-- Navbar List -->
+    <ul class="navbar">
+      <li id="signals-link" class="nav-item highlight" onclick="showSection('signals')">Signals</li>
+      <li id="trade-book-link" class="nav-item"  onclick="showSection('tradeBook')">Trade Book</li>
+    </ul>
+
+    <!-- Signals Section -->
+    <div id="signals-section">
+
+      <!-- Add this button for downloading CSV -->
+
+
+
+      <h2>Current Signals</h2>
+      <table class="dummy-table" id="signalsTable">
+        <thead>
+          <tr>
+            <th>Entry Time</th>
+            <th>Symbol</th>
+            <th>Status</th>
+            <th>Entry Price</th>
+            <th>Current Price</th>
+            <th>MTM</th>
+            <th>MTM in %</th>
+            <th>SL Price</th>
+            <th>Risk Points</th>
+            <th>Risk in %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2022-01-01 10:30:00</td>
+            <td>ABC</td>
+            <td>Open</td>
+            <td>100</td>
+            <td>105</td>
+            <td>5</td>
+            <td>5%</td>
+            <td>95</td>
+            <td>10</td>
+            <td>2%</td>
+          </tr>
+          <tr>
+            <td>2022-01-02 14:45:00</td>
+            <td>XYZ</td>
+            <td>Closed</td>
+            <td>50</td>
+            <td>48</td>
+            <td>-2</td>
+            <td>-4%</td>
+            <td>55</td>
+            <td>5</td>
+            <td>1%</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Trade Book Section (Initially hidden) -->
+    <div id="trade-book-section">
+      <!-- Content will be dynamically loaded here -->
+    </div>
+  </div>
+
+
+
+
+
+
+<!-- Include jQuery first -->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<!-- Include DataTables CSS and JS files -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<!-- Include DataTables Buttons CSS and JS files -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+
+<!-- Your custom script comes after including the required libraries -->
+<script>
+  function showSection(section) {
+    // Your existing code
+  }
+
+  $(document).ready(function() {
+    var table = $('#signalsTable').DataTable({
+      dom: 'Bfrtip', // Add the buttons to the DOM
+      buttons: [
+        'csvHtml5', // Enable CSV button
+        
+      ],
+      searching: false, // Disable search functionality
+      // Other options/configurations can be added here as needed
+    });
+
+    showSection('signals'); // Show signals section by default
+  });
+
+  function exportCsv() {
+    // Your custom function for exporting CSV
+    // You can implement this function to fetch the DataTable data and create a CSV file
+    // Example: https://datatables.net/extensions/buttons/examples/html5/csv.html
+  }
+</script>
+
+
+
+
+</body>
+</html>
